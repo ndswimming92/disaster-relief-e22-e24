@@ -2,7 +2,7 @@
   "name": "disaster-relief",
   "private": true,
   "version": "1.0.0",
-  "author": "Dustin Mansell, Lucas Martin, Steve Butler",
+  "author": "Dustin Mansell, Lucas Martin, Steve Butler, Nicholas Davidson",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
