@@ -30,9 +30,6 @@ export default function NavBar() {
             <Link passHref href="/about">
               <Nav.Link>About</Nav.Link>
             </Link>
-            <Link passHref href="/giving">
-              <Nav.Link>Giving</Nav.Link>
-            </Link>
             <Button className="btn-sm btn-dark" onClick={signIn}>Admins</Button>
           </Nav>
         </Navbar.Collapse>
