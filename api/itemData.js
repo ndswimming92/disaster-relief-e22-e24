@@ -1,5 +1,7 @@
+const dbUrl = 'https://localhost:7287';
+
 const getAllItems = () => new Promise((resolve, reject) => {
-  fetch('https://localhost:7287/item/', {
+  fetch(`${dbUrl}/item/`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -11,7 +13,7 @@ const getAllItems = () => new Promise((resolve, reject) => {
 });
 
 const createItem = (payload) => new Promise((resolve, reject) => {
-  fetch('https://localhost:7287/api/item/', {
+  fetch(`${dbUrl}/api/item/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -24,7 +26,7 @@ const createItem = (payload) => new Promise((resolve, reject) => {
 });
 
 const deleteSingleItem = (id) => new Promise((resolve, reject) => {
-  fetch(`https://localhost:7287/api/item/${id}`, {
+  fetch(`${dbUrl}/api/item/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
