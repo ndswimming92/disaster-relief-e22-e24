@@ -1,7 +1,7 @@
 const dbUrl = 'https://localhost:7287';
 
 const getAllCategories = () => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/category/`, {
+  fetch(`${dbUrl}/api/category/`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
