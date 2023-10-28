@@ -1,5 +1,7 @@
+const dbUrl = 'https://localhost:7287';
+
 const getAllCategories = () => new Promise((resolve, reject) => {
-  fetch('https://localhost:7287/category/', {
+  fetch(`${dbUrl}/category/`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -11,7 +13,7 @@ const getAllCategories = () => new Promise((resolve, reject) => {
 });
 
 const createCategories = (payload) => new Promise((resolve, reject) => {
-  fetch('https://localhost:7287/api/category/', {
+  fetch(`${dbUrl}/api/category/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -24,7 +26,7 @@ const createCategories = (payload) => new Promise((resolve, reject) => {
 });
 
 const deleteSingleCategory = (id) => new Promise((resolve, reject) => {
-  fetch(`https://localhost:7287/api/category/${id}`, {
+  fetch(`${dbUrl}/api/category/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
