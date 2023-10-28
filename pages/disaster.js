@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import Link from 'next/link';
-import { getDisasters } from '../api/disasterData';
+import { getAllDisasters } from '../api/disasterData';
 import DisasterCard from '../components/DisasterCard';
 
 export default function ShowDisasters() {
   const [disasters, setDisasters] = useState([]);
 
   const getAllTheDisasters = () => {
-    getDisasters().then(setDisasters);
+    getAllDisasters().then(setDisasters);
   };
 
   useEffect(() => {
