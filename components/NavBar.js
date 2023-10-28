@@ -8,18 +8,17 @@ import {
   Button,
 } from 'react-bootstrap';
 import { signIn } from '../utils/auth';
-// import { signOut } from '../utils/auth';
 
 export default function NavBar() {
   return (
     <Navbar collapseOnSelect expand="lg" bg="secondary" variant="dark">
       <Container>
         <Link passHref href="/">
-          <Navbar.Brand>CHANGE ME</Navbar.Brand>
+          <Navbar.Brand>TN Disaster Relief</Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
+          <Nav className="me-auto ms-auto w-50 d-flex justify-content-between">
             {/* CLOSE NAVBAR ON LINK SELECTION: https://stackoverflow.com/questions/72813635/collapse-on-select-react-bootstrap-navbar-with-nextjs-not-working */}
             <Link passHref href="/">
               <Nav.Link>Home</Nav.Link>
@@ -33,8 +32,10 @@ export default function NavBar() {
             <Link passHref href="/giving">
               <Nav.Link>Giving</Nav.Link>
             </Link>
-            <Button className="btn-sm btn-dark" onClick={signIn}>Admins</Button>
           </Nav>
+          <div className=" d-flex justify-content-center">
+            <Button className="btn-sm btn-dark" onClick={signIn}>Admin Login</Button>
+          </div>
         </Navbar.Collapse>
       </Container>
     </Navbar>
