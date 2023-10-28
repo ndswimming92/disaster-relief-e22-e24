@@ -9,7 +9,7 @@ import {
 } from 'react-bootstrap';
 import { signOut } from '../utils/auth';
 
-export default function NavBar() {
+export default function AuthNavBar() {
   return (
     <Navbar collapseOnSelect expand="lg" bg="secondary" variant="dark">
       <Container>
