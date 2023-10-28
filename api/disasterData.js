@@ -66,4 +66,4 @@ export {
   createDisaster,
   deleteSingleDisaster,
   updateOrder,
-}
+};
