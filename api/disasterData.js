@@ -1,5 +1,7 @@
+const dbUrl = 'https://localhost:7287';
+
 const getAllDisasters = () => new Promise((resolve, reject) => {
-  fetch('https://localhost:7287/disaster/', {
+  fetch(`${dbUrl}/disaster/`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -10,8 +12,8 @@ const getAllDisasters = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getSingleDisaster = (Id) => new Promise((resolve, reject) => {
-  fetch(`https://localhost:7287/api/disaster/${Id}`, {
+const getSingleDisaster = (id) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/api/disaster/${id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -23,7 +25,7 @@ const getSingleDisaster = (Id) => new Promise((resolve, reject) => {
 });
 
 const deleteSingleDisaster = (id) => new Promise((resolve, reject) => {
-  fetch(`https://localhost:7287/api/disaster/${id}`, {
+  fetch(`${dbUrl}/api/disaster/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -34,7 +36,7 @@ const deleteSingleDisaster = (id) => new Promise((resolve, reject) => {
 });
 
 const createDisaster = (payload) => new Promise((resolve, reject) => {
-  fetch('https://localhost:7287/api/disaster/', {
+  fetch(`${dbUrl}/api/disaster/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -46,24 +48,9 @@ const createDisaster = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const updateOrder = (Id, payload) => new Promise((resolve, reject) => {
-  fetch(`https://localhost:7011/api/disaster/${Id}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(payload),
-  })
-  // .then((response) => response.json())
-  // .then((data) => resolve(data))
-    .then(resolve)
-    .catch(reject);
-});
-
 export {
   getAllDisasters,
   getSingleDisaster,
   createDisaster,
   deleteSingleDisaster,
-  updateOrder,
 };
