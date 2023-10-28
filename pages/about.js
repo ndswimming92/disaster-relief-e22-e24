@@ -1,7 +1,7 @@
 const about = () => (
   <>
     <div>
-      <header className="mt-5">
+      <header className="mt-3 mb-5">
         <h1>About Tennessee Disaster Relief</h1>
       </header>
 
