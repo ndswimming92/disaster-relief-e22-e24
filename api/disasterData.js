@@ -1,7 +1,7 @@
 const dbUrl = 'https://localhost:7287';
 
 const getAllDisasters = () => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/disaster/`, {
+  fetch(`${dbUrl}/api/disaster/`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
