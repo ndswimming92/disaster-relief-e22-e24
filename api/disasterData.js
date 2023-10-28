@@ -48,9 +48,24 @@ const createDisaster = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// Fix
+const updateDisaster = (payload) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/api/disaster/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 export {
   getAllDisasters,
   getSingleDisaster,
   createDisaster,
   deleteSingleDisaster,
+  updateDisaster,
 };
