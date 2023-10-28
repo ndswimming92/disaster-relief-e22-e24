@@ -6,6 +6,7 @@ import { createDisaster, updateDisaster } from '../../api/disasterData';
 import { useAuth } from '../../utils/context/authContext';
 
 const intialState = {
+  image: '',
   name: '',
   description: '',
   location: '',
@@ -100,6 +101,7 @@ function DisasterForm({ disasterObj }) {
 
 DisasterForm.propTypes = {
   disasterObj: PropTypes.shape({
+    image: PropTypes.string,
     name: PropTypes.string,
     description: PropTypes.string,
     location: PropTypes.string,

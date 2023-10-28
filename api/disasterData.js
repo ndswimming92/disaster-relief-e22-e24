@@ -46,7 +46,7 @@ const createDisaster = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const updateOrder = (Id, payload) => new Promise((resolve, reject) => {
+const updateDisaster = (Id, payload) => new Promise((resolve, reject) => {
   fetch(`https://localhost:7011/api/disaster/${Id}`, {
     method: 'PUT',
     headers: {
@@ -65,5 +65,5 @@ export {
   getSingleDisaster,
   createDisaster,
   deleteSingleDisaster,
-  updateOrder,
-}
+  updateDisaster,
+};
