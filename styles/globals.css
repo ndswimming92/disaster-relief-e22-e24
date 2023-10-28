@@ -20,3 +20,12 @@ a {
 body {
   background-color: #d8d9da;
 }
+ 
+.nav-link{
+  font-size: 1.5rem;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
