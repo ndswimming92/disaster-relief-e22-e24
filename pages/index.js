@@ -12,10 +12,15 @@ function Home() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.warn('AuthUser: ', authUser);
+  console.warn('AuthUser: ', authUser.uid);
+  console.warn('User uid: ', user.uid);
 
   return (
-    <h1>HOME</h1>
+    <>
+      <h1>HOME</h1>
+      {authUser.uid === user.uid ? <h1>Admin</h1> : <h1>Non-Admin</h1>}
+    </>
+
   );
 }
 

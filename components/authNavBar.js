@@ -7,8 +7,7 @@ import {
   Nav,
   Button,
 } from 'react-bootstrap';
-import { signIn } from '../utils/auth';
-// import { signOut } from '../utils/auth';
+import { signOut } from '../utils/auth';
 
 export default function NavBar() {
   return (
@@ -30,8 +29,8 @@ export default function NavBar() {
             <Link passHref href="/about">
               <Nav.Link>About</Nav.Link>
             </Link>
-            <Button className="btn-sm btn-dark" onClick={signIn}>Admins</Button>
           </Nav>
+          <Button className="btn-sm btn-dark ms-3" onClick={signOut}>signout</Button>
         </Navbar.Collapse>
       </Container>
     </Navbar>
