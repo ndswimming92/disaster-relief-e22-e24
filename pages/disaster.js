@@ -15,7 +15,7 @@ export default function ShowDisasters() {
 
   return (
     <>
-      <div className="text-center my-4">
+      <div className="text-center my-4 d-flex gap-3 flex-column">
         {disasters.map((disaster) => <DisasterCard key={disaster.id} disasterObj={disaster} onUpdate={getAllTheDisasters} />)}
       </div>
     </>
