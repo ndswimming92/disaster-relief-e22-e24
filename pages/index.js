@@ -29,7 +29,7 @@ function Home() {
 
         <div className="my-5">
           <p className="fs-3 fw-bold">Disaster relief starts in the community.</p>
-          <p className=" fs-6 lh-lg text-black-50">No one else does this: not the government, not other charities. From small house fires to multi-state natural disasters, the American Red Cross goes wherever we are   neded, so people can have clean water, safe shelter and hot meals when they need them most.
+          <p className=" fs-6 lh-lg text-black-50">From small house fires to multi-state natural disasters, the TN Disaster Relief goes wherever we are neded, so people can have clean water, safe shelter and hot meals when they need them most.
           </p>
           <ul className="text-black-50 mb-5">
             <li>We respond to an average of more than 10,000 disasters every year</li>
