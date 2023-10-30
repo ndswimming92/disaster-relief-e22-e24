@@ -2,6 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
+import Image from 'next/image';
 import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
 import { deleteSingleDisaster } from '../api/disasterData';
@@ -14,21 +15,29 @@ function DisasterCard({ disasterObj, onUpdate }) {
   };
 
   return (
-    <Card style={{ width: '18rem', margin: '10px' }}>
-      <Card.Img variant="top" src={disasterObj.image} alt={disasterObj.disasterName} style={{ height: '400px' }} />
-      <Card.Body>
-        <Card.Title>{disasterObj.disasterName}</Card.Title>
-        <Link href={`/disaster/${disasterObj.id}`} passHref>
-          <Button variant="primary" className="m-2">VIEW</Button>
+    <div className="d-flex bg-white p-2 w-100">
+      <div className="bg-white">
+        <Image src={`http://localhost:3000/${disasterObj.image}.png`} width={200} height={200} />
+      </div>
+      <Card style={{ width: '15rem' }} className="rounded-0 border-0 w-75">
+        {/* <Card.Img variant="top" src="../public/tornado.png" alt={disasterObj.disasterName} style={{ height: '400px' }} /> */}
+        <Card.Body>
+          <Card.Title>{disasterObj.disasterName}</Card.Title>
+          <Card.Text>{disasterObj.description}</Card.Text>
+        </Card.Body>
+      </Card>
+      <div className="d-flex flex-column justify-content-center gap-2 ms-5 me-2">
+        <Link href={`/Disaster/${disasterObj.id}`} passHref>
+          <Button variant="primary">VIEW</Button>
         </Link>
-        <Link href={`/disaster/edit/${disasterObj.id}`} passHref>
+        <Link href={`/Disaster/edit/${disasterObj.id}`} passHref>
           <Button variant="info">EDIT</Button>
         </Link>
-        <Button variant="danger" onClick={deleteADisaster} className="m-2">
+        <Button variant="danger" onClick={deleteADisaster}>
           DELETE
         </Button>
-      </Card.Body>
-    </Card>
+      </div>
+    </div>
   );
 }
 
