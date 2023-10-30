@@ -32,7 +32,7 @@ const about = () => (
       <section>
         <h2>How You Can Help</h2>
         <p>We believe that disaster relief is a collective effort. Your support, whether through donations, volunteering, or spreading awareness, plays a vital role in our mission. Together, we can make a significant difference in the lives of disaster survivors and build a more resilient world.</p>
-        <p>Thank you for visiting our website and learning more about [Organization Name] Disaster Relief. We invite you to join us in our mission to provide help, hope, and healing to those in the wake of disaster. Together, we can make a lasting impact.</p>
+        <p>Thank you for visiting our website and learning more about TN Disaster Relief. We invite you to join us in our mission to provide help, hope, and healing to those in the wake of disaster. Together, we can make a lasting impact.</p>
       </section>
 
       <section>
