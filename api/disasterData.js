@@ -51,7 +51,7 @@ const createDisaster = (payload) => new Promise((resolve, reject) => {
 // Fix
 const updateDisaster = (payload) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/api/disaster/`, {
-    method: 'POST',
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },

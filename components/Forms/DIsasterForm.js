@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { Button, Form } from 'react-bootstrap';
@@ -17,6 +17,12 @@ function DisasterForm({ disasterObj }) {
   const [formInput, setFormInput] = useState(intialState);
   const router = useRouter();
   const { user } = useAuth();
+
+  useEffect(() => {
+    if (disasterObj.id) {
+      setFormInput(disasterObj);
+    }
+  }, [disasterObj]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -52,7 +58,7 @@ function DisasterForm({ disasterObj }) {
             type="text"
             placeholder="Enter Disaster Name"
             name="name"
-            value={formInput.name}
+            value={formInput.disasterName}
             onChange={handleChange}
             required
           />
