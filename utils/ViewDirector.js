@@ -15,7 +15,6 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
 
   // what the user should see if they are logged in
   if (user) {
-    console.warn('USER: ', user);
     return (
       <>
         <AuthNavBar /> {/* NavBar only visible by admin users that are logged in */}
