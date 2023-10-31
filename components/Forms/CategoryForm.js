@@ -9,7 +9,7 @@ const initialState = {
   categoryDescription: '',
 };
 
-function ItemForm({ categoryObj }) {
+function CategoryForm({ categoryObj }) {
   const [formInput] = useState(initialState);
   const router = useRouter();
 
@@ -55,7 +55,7 @@ function ItemForm({ categoryObj }) {
   );
 }
 
-ItemForm.propTypes = {
+CategoryForm.propTypes = {
   categoryObj: PropTypes.shape({
     categoryName: PropTypes.string,
     categoryDescription: PropTypes.string,
@@ -63,6 +63,6 @@ ItemForm.propTypes = {
   }),
 };
 
-ItemForm.defaultProps = {
+CategoryForm.defaultProps = {
   categoryObj: initialState,
 };
