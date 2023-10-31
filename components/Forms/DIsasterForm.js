@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { Button, Form } from 'react-bootstrap';
@@ -18,6 +18,12 @@ function DisasterForm({ disasterObj }) {
   const router = useRouter();
   // const { user } = useAuth();
 
+  useEffect(() => {
+    if (disasterObj.id) {
+      setFormInput(disasterObj);
+    }
+  }, [disasterObj]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormInput((prevState) => ({
@@ -30,7 +36,7 @@ function DisasterForm({ disasterObj }) {
     e.preventDefault();
 
     if (disasterObj.id) {
-      updateDisaster(formInput).then(() => router.push(`/Disaster/${disasterObj.id}`));
+      updateDisaster(formInput).then(() => router.push('/disaster'));
     } else {
       const payload = { ...formInput };
       createDisaster(payload).then(router.push('/disaster'));
@@ -116,8 +122,8 @@ DisasterForm.propTypes = {
     name: PropTypes.string,
     description: PropTypes.string,
     location: PropTypes.string,
-    severity: PropTypes.bool,
-    id: PropTypes.string,
+    severity: PropTypes.number,
+    id: PropTypes.number,
   }),
 };
 
