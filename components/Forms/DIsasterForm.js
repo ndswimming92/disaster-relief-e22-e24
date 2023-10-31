@@ -3,11 +3,11 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { Button, Form } from 'react-bootstrap';
 import { createDisaster, updateDisaster } from '../../api/disasterData';
-import { useAuth } from '../../utils/context/authContext';
+// import { useAuth } from '../../utils/context/authContext';
 
 const intialState = {
+  disasterName: '',
   image: '',
-  name: '',
   description: '',
   location: '',
   severity: '',
@@ -16,7 +16,7 @@ const intialState = {
 function DisasterForm({ disasterObj }) {
   const [formInput, setFormInput] = useState(intialState);
   const router = useRouter();
-  const { user } = useAuth();
+  // const { user } = useAuth();
 
   useEffect(() => {
     if (disasterObj.id) {
@@ -36,35 +36,29 @@ function DisasterForm({ disasterObj }) {
     e.preventDefault();
 
     if (disasterObj.id) {
-      updateDisaster(formInput).then(() => router.push(`/disaster/${disasterObj.id}`));
+      updateDisaster(formInput).then(() => router.push(`/Disaster/${disasterObj.id}`));
     } else {
-      const payload = { ...formInput, uid: user.uid };
-      createDisaster(payload).then(({ name }) => {
-        const patchPayload = { id: name };
-
-        updateDisaster(patchPayload).then(() => {
-          router.push('/disaster');
-        });
-      });
+      const payload = { ...formInput };
+      createDisaster(payload).then(router.push('/disaster'));
     }
   };
 
   return (
     <>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form onSubmit={handleSubmit} className="mt-4">
+        <Form.Group className="mb-3" controlId="disasterName">
           <Form.Label>Disaster Name</Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter Disaster Name"
-            name="name"
+            name="disasterName"
             value={formInput.disasterName}
             onChange={handleChange}
             required
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Group className="mb-3" controlId="description">
           <Form.Label>Description</Form.Label>
           <Form.Control
             type="text"
@@ -75,7 +69,7 @@ function DisasterForm({ disasterObj }) {
             required
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Group className="mb-3" controlId="location">
           <Form.Label>Location</Form.Label>
           <Form.Control
             type="text"
@@ -86,8 +80,8 @@ function DisasterForm({ disasterObj }) {
             required
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Severity</Form.Label>
+        <Form.Group className="mb-3" controlId="severity">
+          <Form.Label>Severity (1 - 5 : least to greatest impact)</Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter Disaster Severity"
@@ -96,6 +90,23 @@ function DisasterForm({ disasterObj }) {
             onChange={handleChange}
             required
           />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="image">
+          <Form.Label>Image</Form.Label>
+          <Form.Select
+            aria-label="Default select example"
+            name="image"
+            value={formInput.image}
+            onChange={handleChange}
+          >
+            <option>Select Image</option>
+            <option value="tornado">Tornado</option>
+            <option value="housefire">Housefire</option>
+            <option value="flood">Flood</option>
+            <option value="wildfire">Wildfire</option>
+            <option value="hurricane">Hurricane</option>
+          </Form.Select>
         </Form.Group>
         <Button variant="primary" type="submit">
           {disasterObj.id ? 'Update Disaster' : 'Submit Disaster'}

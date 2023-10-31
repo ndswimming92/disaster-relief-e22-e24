@@ -8,7 +8,7 @@ export default function ShowDisasters() {
   const getAllTheDisasters = () => {
     getAllDisasters().then(setDisasters);
   };
-  console.warn(getAllTheDisasters);
+
   useEffect(() => {
     getAllTheDisasters();
   }, []);
