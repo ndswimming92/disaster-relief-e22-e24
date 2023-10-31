@@ -17,10 +17,9 @@ function DisasterCard({ disasterObj, onUpdate }) {
   return (
     <div className="d-flex bg-white p-2 w-100">
       <div className="bg-white">
-        <Image src={`http://localhost:3000/${disasterObj.image}.png`} width={200} height={200} />
+        <Image src={`http://localhost:3000/${disasterObj.image}.png`} width={150} height={150} priority />
       </div>
       <Card style={{ width: '15rem' }} className="rounded-0 border-0 w-75">
-        {/* <Card.Img variant="top" src="../public/tornado.png" alt={disasterObj.disasterName} style={{ height: '400px' }} /> */}
         <Card.Body>
           <Card.Title>{disasterObj.disasterName}</Card.Title>
           <Card.Text>{disasterObj.description}</Card.Text>
