@@ -36,7 +36,7 @@ function DisasterForm({ disasterObj }) {
     e.preventDefault();
 
     if (disasterObj.id) {
-      updateDisaster(formInput).then(() => router.push(`/Disaster/${disasterObj.id}`));
+      updateDisaster(formInput).then(() => router.push('/disaster'));
     } else {
       const payload = { ...formInput };
       createDisaster(payload).then(router.push('/disaster'));
@@ -122,8 +122,8 @@ DisasterForm.propTypes = {
     name: PropTypes.string,
     description: PropTypes.string,
     location: PropTypes.string,
-    severity: PropTypes.bool,
-    id: PropTypes.string,
+    severity: PropTypes.number,
+    id: PropTypes.number,
   }),
 };
 
