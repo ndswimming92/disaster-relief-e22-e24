@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Head from 'next/head';
 import Image from 'next/image';
 import { checkUser } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
@@ -21,6 +22,9 @@ function Home() {
 
   return (
     <>
+      <Head>
+        <title>Home</title>
+      </Head>
       <div className="container">
         <Image
           src={hero}
