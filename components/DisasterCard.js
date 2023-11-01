@@ -7,7 +7,7 @@ import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
 import { deleteSingleDisaster } from '../api/disasterData';
 
-function DisasterCard({ disasterObj, onUpdate }) {
+function DisasterCard({ disasterObj, onUpdate, adminUser }) {
   const deleteADisaster = () => {
     if (window.confirm(`Do you want to delete ${disasterObj.disasterName}?`)) {
       deleteSingleDisaster(disasterObj.id).then(() => onUpdate());
@@ -29,12 +29,17 @@ function DisasterCard({ disasterObj, onUpdate }) {
         <Link href={`/Disaster/${disasterObj.id}`} passHref>
           <Button variant="primary">VIEW</Button>
         </Link>
-        <Link href={`/Disaster/edit/${disasterObj.id}`} passHref>
-          <Button variant="info">EDIT</Button>
-        </Link>
-        <Button variant="danger" onClick={deleteADisaster}>
-          DELETE
-        </Button>
+        {adminUser.id && (
+          <>
+            <Link href={`/Disaster/edit/${disasterObj.id}`} passHref>
+              <Button variant="info">EDIT</Button>
+            </Link>
+            <Button variant="danger" onClick={deleteADisaster}>
+              DELETE
+            </Button>
+          </>
+        )}
+
       </div>
     </div>
   );
@@ -50,6 +55,14 @@ DisasterCard.propTypes = {
     id: PropTypes.number,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
+  adminUser: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    uid: PropTypes.string,
+  }),
 };
 
+DisasterCard.defaultProps = {
+  adminUser: PropTypes.shape(),
+};
 export default DisasterCard;
