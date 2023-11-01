@@ -7,7 +7,7 @@ import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
 import { deleteSingleDisaster } from '../api/disasterData';
 
-function DisasterCard({ disasterObj, onUpdate, adminUser }) {
+function DisasterCard({ disasterObj, onUpdate }) {
   const deleteADisaster = () => {
     if (window.confirm(`Do you want to delete ${disasterObj.disasterName}?`)) {
       deleteSingleDisaster(disasterObj.id).then(() => onUpdate());
@@ -27,18 +27,14 @@ function DisasterCard({ disasterObj, onUpdate, adminUser }) {
       </Card>
       <div className="d-flex flex-column justify-content-center gap-2 ms-5 me-2">
         <Link href={`/Disaster/${disasterObj.id}`} passHref>
-          <Button variant="primary">VIEW</Button>
+          <Button variant="secondary">Details</Button>
         </Link>
-        {adminUser.id && (
-          <>
-            <Link href={`/Disaster/edit/${disasterObj.id}`} passHref>
-              <Button variant="info">EDIT</Button>
-            </Link>
-            <Button variant="danger" onClick={deleteADisaster}>
-              DELETE
-            </Button>
-          </>
-        )}
+        <Link href={`/Disaster/edit/${disasterObj.id}`} passHref>
+          <Button className="bg-dark bg-opacity-75 border-0">Edit</Button>
+        </Link>
+        <Button variant="dark" onClick={deleteADisaster}>
+          Delete
+        </Button>
 
       </div>
     </div>
@@ -55,14 +51,7 @@ DisasterCard.propTypes = {
     id: PropTypes.number,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
-  adminUser: PropTypes.shape({
-    id: PropTypes.number,
-    name: PropTypes.string,
-    uid: PropTypes.string,
-  }),
+
 };
 
-DisasterCard.defaultProps = {
-  adminUser: PropTypes.shape(),
-};
 export default DisasterCard;
