@@ -29,6 +29,9 @@ export default function AuthNavBar() {
           <Link passHref href="/about">
             <Nav.Link>About</Nav.Link>
           </Link>
+          <Link passHref href="/giving">
+            <Nav.Link>Giving</Nav.Link>
+          </Link>
           <Link passHref href="/adminConsole">
             <Nav.Link>Admin Console</Nav.Link>
           </Link>

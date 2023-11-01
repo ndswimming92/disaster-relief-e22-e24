@@ -36,8 +36,21 @@ const deleteSingleCategory = (id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getCategoryCount = (id) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/api/item/category/${id}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(Object.values(data)))
+    .catch(reject);
+});
+
 export {
   getAllCategories,
   createCategories,
   deleteSingleCategory,
+  getCategoryCount,
 };
