@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Head from 'next/head';
 import { getAllCategories } from '../api/categoryData';
 
 const Giving = () => {
@@ -15,6 +16,9 @@ const Giving = () => {
 
   return (
     <>
+      <Head>
+        <title>Giving</title>
+      </Head>
 
       <h1 className="mt-3">Giving</h1>
 

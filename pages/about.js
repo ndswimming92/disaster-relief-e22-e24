@@ -1,5 +1,10 @@
+import Head from 'next/head';
+
 const about = () => (
   <>
+    <Head>
+      <title>About Us</title>
+    </Head>
     <div>
       <header className="mt-3 mb-5">
         <h1>About Tennessee Disaster Relief</h1>

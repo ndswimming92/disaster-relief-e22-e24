@@ -12,7 +12,8 @@ const getAllCategories = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const createCategories = (payload) => new Promise((resolve, reject) => {
+// Create New Category
+const createCategory = (payload) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/api/category/`, {
     method: 'POST',
     headers: {
@@ -38,6 +39,6 @@ const deleteSingleCategory = (id) => new Promise((resolve, reject) => {
 
 export {
   getAllCategories,
-  createCategories,
+  createCategory,
   deleteSingleCategory,
 };
