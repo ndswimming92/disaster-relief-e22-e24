@@ -1,6 +1,6 @@
 import Head from 'next/head';
-import DisasterForm from '../components/Forms/DisasterForm';
 import CategoryForm from '../components/Forms/CategoryForm';
+import DisasterForm from '../components/Forms/DIsasterForm';
 
 const AdminConsole = () => (
   <>
