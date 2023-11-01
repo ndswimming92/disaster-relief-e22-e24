@@ -1,38 +1,45 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { Button, Form } from 'react-bootstrap';
-import { useRouter } from 'next/router';
-import { createCategories } from '../../api/categoryData';
+// import { useRouter } from 'next/router';
+import { createCategory } from '../../api/categoryData';
 
 const initialState = {
   categoryName: '',
-  categoryDescription: '',
+  description: '',
 };
 
-function CategoryForm({ categoryObj }) {
-  const [formInput] = useState(initialState);
-  const router = useRouter();
+function CategoryForm() {
+  const [formInput, setFormInput] = useState(initialState);
+  // const router = useRouter();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormInput((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (categoryObj.id) {
-      const payload = { ...formInput };
-      createCategories(payload).then(router.push());
-    }
+    const payload = { ...formInput };
+    console.warn('Payload: ', payload);
+    createCategory(payload);
   };
 
   return (
     <>
-      <Form onSubmit={handleSubmit}>
+      <Form className="bg-dark bg-opacity-75 p-4 rounded-3 text-white" onSubmit={handleSubmit}>
 
         <Form.Group className="mb-3">
-          <Form.Label>category</Form.Label>
+          <Form.Label>Category Name</Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter Category Name"
             name="categoryName"
             value={formInput.categoryName}
+            onChange={handleChange}
           />
         </Form.Group>
 
@@ -41,13 +48,14 @@ function CategoryForm({ categoryObj }) {
           <Form.Control
             type="text"
             placeholder="Enter Category Description"
-            name="categoryDescription"
-            value={formInput.categoryDescription}
+            name="description"
+            value={formInput.description}
+            onChange={handleChange}
           />
         </Form.Group>
 
-        <Button variant="primary" type="submit">
-          Submit Category
+        <Button variant="dark" className="mt-3 py-2 px-4 border-2 border-light" type="submit">
+          Submit
         </Button>
 
       </Form>
@@ -55,14 +63,16 @@ function CategoryForm({ categoryObj }) {
   );
 }
 
-CategoryForm.propTypes = {
-  categoryObj: PropTypes.shape({
-    categoryName: PropTypes.string,
-    categoryDescription: PropTypes.string,
-    id: PropTypes.string,
-  }),
-};
+export default CategoryForm;
 
-CategoryForm.defaultProps = {
-  categoryObj: initialState,
-};
+// CategoryForm.propTypes = {
+//   categoryObj: PropTypes.shape({
+//     categoryName: PropTypes.string,
+//     categoryDescription: PropTypes.string,
+//     id: PropTypes.string,
+//   }),
+// };
+
+// CategoryForm.defaultProps = {
+//   categoryObj: initialState,
+// };

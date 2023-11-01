@@ -45,7 +45,7 @@ function DisasterForm({ disasterObj }) {
 
   return (
     <>
-      <Form onSubmit={handleSubmit} className="mt-4">
+      <Form onSubmit={handleSubmit} className="bg-dark bg-opacity-75 p-4 rounded-3 text-white mt-4">
         <Form.Group className="mb-3" controlId="disasterName">
           <Form.Label>Disaster Name</Form.Label>
           <Form.Control
@@ -108,8 +108,8 @@ function DisasterForm({ disasterObj }) {
             <option value="hurricane">Hurricane</option>
           </Form.Select>
         </Form.Group>
-        <Button variant="primary" type="submit">
-          {disasterObj.id ? 'Update Disaster' : 'Submit Disaster'}
+        <Button variant="dark" className="mt-3 py-2 px-4 border-2 border-light" type="submit">
+          {disasterObj.id ? 'Update' : 'Submit'}
         </Button>
       </Form>
     </>
