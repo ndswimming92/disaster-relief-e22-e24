@@ -11,6 +11,7 @@ export default function disasterDetails() {
   const [singleDetails, setDisasterDetails] = useState({});
   const [items, setItems] = useState([]);
   const { id } = router.query;
+  let disasterItems = [];
 
   useEffect(() => {
     getSingleDisaster(id).then(setDisasterDetails);
@@ -26,6 +27,14 @@ export default function disasterDetails() {
       });
   };
 
+
+ if  (Object.keys(singleDetails).includes("items")) {
+    disasterItems = singleDetails.items;
+} else {
+    console.log("No items pledges for this disaster");
+}
+
+
   return (
     <div>
       <div>
@@ -40,6 +49,13 @@ export default function disasterDetails() {
           <div className="mt-5">
         <p className="fs-4 fw-semibold">Your Pledge</p>
         <ItemForm obj={{}} disasterId={id} onSubmit={handleItemSubmit} />
+      </div>
+      <div className="m-4">
+        <p className="fs-4">Items Pledged</p>
+        <ul className="text-decoration-none">
+          {disasterItems.map((item) => <li key={item.id}>{item.itemName}</li>)}
+        </ul>
+        
       </div>
         </div>
       </div>

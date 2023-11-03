@@ -8,7 +8,7 @@ import { Button } from 'react-bootstrap';
 
 import { useAuth } from '../../utils/context/authContext';
 import { getAllDisasters } from '../../api/disasterData';
-import { createItem } from '../../api/itemData';
+import { addItemToDisaster } from '../../api/itemData';
 import { getAllCategories } from '../../api/categoryData';
 
 const initialState = {
@@ -16,11 +16,13 @@ const initialState = {
   count: '',
 };
 // this is a comment
-function ItemForm({ itemObj }) {
+function ItemForm({ itemObj, disasterId }) {
   const [items, setItems] = useState([]);
   const [categories, setCategories] = useState([]);
   const [formInput, setFormInput] = useState(initialState);
   const { user } = useAuth();
+
+  console.warn('ID: ', disasterId);
 
   useEffect(() => {
     getAllDisasters(user.uid).then(setItems);
@@ -39,12 +41,13 @@ function ItemForm({ itemObj }) {
       [name]: value,
     }));
   };
-  console.log(items);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const payload = { ...formInput };
-    createItem(payload)
+    console.warn("Payload", payload);
+    addItemToDisaster(payload, disasterId);
+    setFormInput(initialState);
   };
 
   return (
@@ -103,6 +106,7 @@ ItemForm.propTypes = {
     count: PropTypes.string,
     id: PropTypes.number,
   }),
+  disasterId: PropTypes.number.isRequired,
 
 };
 
