@@ -28,7 +28,6 @@ function Home() {
       <div className="container">
         <Image
           src={hero}
-          fill
         />
 
         <div className="my-5">

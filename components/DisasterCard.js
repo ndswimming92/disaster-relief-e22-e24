@@ -27,14 +27,15 @@ function DisasterCard({ disasterObj, onUpdate }) {
       </Card>
       <div className="d-flex flex-column justify-content-center gap-2 ms-5 me-2">
         <Link href={`/Disaster/${disasterObj.id}`} passHref>
-          <Button variant="primary">VIEW</Button>
+          <Button variant="secondary">Details</Button>
         </Link>
         <Link href={`/Disaster/edit/${disasterObj.id}`} passHref>
-          <Button variant="info">EDIT</Button>
+          <Button className="bg-dark bg-opacity-75 border-0">Edit</Button>
         </Link>
-        <Button variant="danger" onClick={deleteADisaster}>
-          DELETE
+        <Button variant="dark" onClick={deleteADisaster}>
+          Delete
         </Button>
+
       </div>
     </div>
   );
@@ -50,6 +51,7 @@ DisasterCard.propTypes = {
     id: PropTypes.number,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
+
 };
 
 export default DisasterCard;

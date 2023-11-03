@@ -37,7 +37,9 @@ export default function AuthNavBar() {
           </Link>
         </Nav>
         <div className=" w-25 d-flex justify-content-end">
-          <Button className="btn-sm btn-secondary" onClick={signOut}>Signout</Button>
+          <Link passHref href="/">
+            <Button className="btn-sm btn-secondary" onClick={signOut}>Signout</Button>
+          </Link>
         </div>
       </Navbar.Collapse>
       {/* </Container> */}

@@ -10,13 +10,12 @@ const intialState = {
   image: '',
   description: '',
   location: '',
-  severity: '',
+  severity: 0,
 };
 
 function DisasterForm({ disasterObj }) {
   const [formInput, setFormInput] = useState(intialState);
   const router = useRouter();
-  // const { user } = useAuth();
 
   useEffect(() => {
     if (disasterObj.id) {
