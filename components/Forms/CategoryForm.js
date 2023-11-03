@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Button, Form } from 'react-bootstrap';
 // import { useRouter } from 'next/router';
 import { createCategory } from '../../api/categoryData';
@@ -9,7 +9,7 @@ const initialState = {
   description: '',
 };
 
-function CategoryForm() {
+function CategoryForm({ onUpdate }) {
   const [formInput, setFormInput] = useState(initialState);
   // const router = useRouter();
 
@@ -25,7 +25,8 @@ function CategoryForm() {
     e.preventDefault();
     const payload = { ...formInput };
     console.warn('Payload: ', payload);
-    createCategory(payload);
+    createCategory(payload).then(() => onUpdate());
+    setFormInput(initialState);
   };
 
   return (
@@ -65,14 +66,6 @@ function CategoryForm() {
 
 export default CategoryForm;
 
-// CategoryForm.propTypes = {
-//   categoryObj: PropTypes.shape({
-//     categoryName: PropTypes.string,
-//     categoryDescription: PropTypes.string,
-//     id: PropTypes.string,
-//   }),
-// };
-
-// CategoryForm.defaultProps = {
-//   categoryObj: initialState,
-// };
+CategoryForm.propTypes = {
+  onUpdate: PropTypes.func.isRequired,
+};
