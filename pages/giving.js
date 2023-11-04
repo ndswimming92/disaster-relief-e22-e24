@@ -49,7 +49,7 @@ const Giving = () => {
 
   return (
     <>
-      <h1 className="mt-3">Giving</h1>
+      <h1 className="mt-3">Thank you for your Giving!</h1>
       <div>
         <h2>Category Counts</h2>
         <ul>
