@@ -1,49 +1,74 @@
-/* eslint-disable no-plusplus */
 import React, { useState, useEffect } from 'react';
-import Card from 'react-bootstrap/Card';
 import { getAllCategories } from '../api/categoryData';
+import { getAllItems } from '../api/itemData';
+import { getAllDisasters } from '../api/disasterData';
 
 const Giving = () => {
-  const [categoryList, setCategoryList] = useState([]);
-  const [categoryCounts, setCategoryCounts] = useState({});
+  const [disasterCategoryCounts, setDisasterCategoryCounts] = useState({});
 
   useEffect(() => {
-    getAllCategories().then((categories) => {
-      setCategoryList(categories);
+    const fetchCategoryCounts = async () => {
+      // Fetch all categories
+      const categories = await getAllCategories();
 
-      // Calculate category counts
-      const counts = {};
-      categories.forEach((category) => {
-        if (counts[category.categoryName]) {
-          counts[category.categoryName]++;
-        } else {
-          counts[category.categoryName] = 1;
+      // Fetch all donation items
+      const items = await getAllItems();
+
+      // Fetch all disasters
+      const disasters = await getAllDisasters();
+
+      // Create an empty object to store category counts for each disaster
+      const disasterCounts = {};
+
+      // Initialize the disaster counts with zeros
+      disasters.forEach((disaster) => {
+        disasterCounts[disaster.id] = {};
+        disasterCounts[disaster.id].disasterName = disaster.disasterName;
+
+        categories.forEach((category) => {
+          disasterCounts[disaster.id][category.categoryName] = 0;
+        });
+      });
+
+      // Calculate category counts for each disaster
+      items.forEach((item) => {
+        if (item.category && item.category.categoryName) {
+          const { disasterId } = item;
+          const { categoryName } = item.category;
+          disasterCounts[disasterId][categoryName] = (disasterCounts[disasterId][categoryName] || 0) + 1;
         }
       });
-      setCategoryCounts(counts);
-    });
+
+      // Set the state variable with the counts
+      setDisasterCategoryCounts(disasterCounts);
+    };
+
+    // Call the function to fetch category counts on component mount
+    fetchCategoryCounts();
   }, []);
 
   return (
     <>
-      <h1 className="mt-3">Thank you for your Giving!</h1>
-      <div>
-        {categoryList.map((category) => (
-          <div key={category.id}>
-            <Card style={{ width: '15rem' }} className="rounded-0 border-0 w-75">
-              <Card.Body>
-                <Card.Title>{category.categoryName}</Card.Title>
-                <Card.Text>{category.description}</Card.Text>
-              </Card.Body>
-            </Card>
-          </div>
-        ))}
-      </div>
+      <h1 className="mt-3">Giving</h1>
       <div>
         <h2>Category Counts</h2>
         <ul>
-          {Object.entries(categoryCounts).map(([categoryName, count]) => (
-            <li key={categoryName}>{categoryName}: {count}</li>
+          {Object.entries(disasterCategoryCounts).map(([disasterId, disasterData]) => (
+            <li key={disasterId}>
+              {disasterData.disasterName}:
+              <ul>
+                {Object.entries(disasterData).map(([categoryName, count]) => {
+                  if (categoryName !== 'disasterName') {
+                    return (
+                      <li key={categoryName}>
+                        {categoryName}: {count}
+                      </li>
+                    );
+                  }
+                  return null;
+                })}
+              </ul>
+            </li>
           ))}
         </ul>
       </div>
