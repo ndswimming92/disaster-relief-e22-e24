@@ -32,10 +32,10 @@ function DisasterCard({ disasterObj, onUpdate, adminUser }) {
         {adminUser.id && (
           <>
             <Link href={`/Disaster/edit/${disasterObj.id}`} passHref>
-              <Button variant="info">EDIT</Button>
+              <Button className="bg-dark bg-opacity-75 border-0">Edit</Button>
             </Link>
-            <Button variant="danger" onClick={deleteADisaster}>
-              DELETE
+            <Button variant="dark" onClick={deleteADisaster}>
+              Delete
             </Button>
           </>
         )}
