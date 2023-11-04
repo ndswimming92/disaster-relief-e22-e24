@@ -36,8 +36,22 @@ const deleteSingleItem = (id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const addItemToDisaster = (payload, disasterId) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/api/item/${disasterId}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 export {
   getAllItems,
   createItem,
   deleteSingleItem,
+  addItemToDisaster,
 };
