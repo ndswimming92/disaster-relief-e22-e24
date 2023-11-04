@@ -8,7 +8,7 @@ import { Button } from 'react-bootstrap';
 
 import { useAuth } from '../../utils/context/authContext';
 import { getAllDisasters } from '../../api/disasterData';
-import { createItem } from '../../api/itemData';
+import { addItemToDisaster } from '../../api/itemData';
 import { getAllCategories } from '../../api/categoryData';
 
 const initialState = {
@@ -16,11 +16,13 @@ const initialState = {
   count: '',
 };
 // this is a comment
-function ItemForm({ itemObj }) {
+function ItemForm({ itemObj, disasterId }) {
   const [items, setItems] = useState([]);
   const [categories, setCategories] = useState([]);
   const [formInput, setFormInput] = useState(initialState);
   const { user } = useAuth();
+
+  console.warn('ID: ', disasterId);
 
   useEffect(() => {
     getAllDisasters(user.uid).then(setItems);
@@ -39,27 +41,28 @@ function ItemForm({ itemObj }) {
       [name]: value,
     }));
   };
-  console.log(items);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const payload = { ...formInput };
-    console.warn('Payload: ', payload);
-    createItem(payload)
+    console.warn("Payload", payload);
+    addItemToDisaster(payload, disasterId);
+    setFormInput(initialState);
   };
 
   return (
 
-    <><FloatingLabel controlId="floatingSelect" label="Categories">
+    <Form className="bg-dark bg-opacity-75 p-4 rounded-3 text-white" onSubmit={handleSubmit}>
+      <FloatingLabel controlId="floatingSelect" label="Categories">
       <Form.Select
         aria-label="Categories"
         name="categoryId"
         onChange={handleChange}
         className="mb-3"
-        value={formInput.categoryId} // FIXME: modify code to remove error
+        value={formInput.categoryId} 
         required
       >
-        <option value="">Select a category to put this Item on</option>
+        <option value="">Select a category</option>
         {categories.map((category) => (
           <option
             key={category.id}
@@ -69,8 +72,8 @@ function ItemForm({ itemObj }) {
           </option>
         ))}
       </Form.Select>
-    </FloatingLabel><Form onSubmit={handleSubmit}>
-        <FloatingLabel controlId="floatingInput1" label="Enter the donation Name" className="mb-3">
+    </FloatingLabel>
+        <FloatingLabel controlId="floatingInput1" label="Enter the donation Name" className="mb-3 text-black-50">
           <Form.Control
             type="text"
             placeholder="Enter the donation Name"
@@ -80,7 +83,7 @@ function ItemForm({ itemObj }) {
             required />
         </FloatingLabel>
 
-        <FloatingLabel controlId="floatingInput1" label="Enter the amount in which you would be willing to donate" className="mb-3">
+        <FloatingLabel controlId="floatingInput1" label="Enter the amount in which you would be willing to donate" className="mb-3 text-black-50">
           <Form.Control
             type="text"
             placeholder="If giving currency please use USD"
@@ -91,9 +94,9 @@ function ItemForm({ itemObj }) {
         </FloatingLabel>
 
         <div>
-          <Button type="submit" variant="outline-warning" style={{ marginBottom: '30px' }}>{itemObj.id ? 'Update' : 'Post'} Your Donation Item</Button>
+          <Button variant="dark" className="mt-3 py-2 px-4 border-2 border-light" type="submit" style={{ marginBottom: '30px' }}>{itemObj.id ? 'Update' : 'Submit'} Your Pledged Item</Button>
         </div>
-      </Form></>
+    </Form>
   );
 }
 
@@ -103,6 +106,7 @@ ItemForm.propTypes = {
     count: PropTypes.string,
     id: PropTypes.number,
   }),
+  disasterId: PropTypes.number.isRequired,
 
 };
 

@@ -11,6 +11,7 @@ export default function disasterDetails() {
   const [singleDetails, setDisasterDetails] = useState({});
   const [items, setItems] = useState([]);
   const { id } = router.query;
+  let disasterItems = [];
 
   useEffect(() => {
     getSingleDisaster(id).then(setDisasterDetails);
@@ -26,20 +27,35 @@ export default function disasterDetails() {
       });
   };
 
+
+ if  (Object.keys(singleDetails).includes("items")) {
+    disasterItems = singleDetails.items;
+} else {
+    console.log("No items pledges for this disaster");
+}
+
+
   return (
     <div>
-      <div className="body2" class="c2">
-        <div className="b2">
+      <div>
+        <div>
           <span />
-          <div class="c3">
-            <h1>Disaster Name: {singleDetails.disasterName}</h1>
-            <h4>Description: {singleDetails.description} </h4>
-            <h4>Location: {singleDetails.location} </h4>
-            <h4> Severity: {singleDetails.severity}</h4>
+          <div >
+            <h1 className="my-5">{singleDetails.disasterName}</h1>
+            <p className="fs-6"><span className="fw-semibold me-3">Description:</span> {singleDetails.description} </p>
+            <p><span className="fw-semibold me-3">Location:</span> {singleDetails.location} </p>
+            <p> <span className="fw-semibold me-3">Severity:</span> {singleDetails.severity}</p>
           </div>
           <div className="mt-5">
-        <h5>Your Donation</h5>
+        <p className="fs-4 fw-semibold">Your Pledge</p>
         <ItemForm obj={{}} disasterId={id} onSubmit={handleItemSubmit} />
+      </div>
+      <div className="m-4">
+        <p className="fs-4">Items Pledged</p>
+        <ul className="text-decoration-none">
+          {disasterItems.map((item) => <li key={item.id}>{item.itemName}</li>)}
+        </ul>
+        
       </div>
         </div>
       </div>
