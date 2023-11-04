@@ -27,7 +27,7 @@ function DisasterCard({ disasterObj, onUpdate, adminUser }) {
       </Card>
       <div className="d-flex flex-column justify-content-center gap-2 ms-5 me-2">
         <Link href={`/Disaster/${disasterObj.id}`} passHref>
-          <Button variant="primary">VIEW</Button>
+          <Button variant="secondary">DETAILS</Button>
         </Link>
         {adminUser.id && (
           <>
