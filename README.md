@@ -1,4 +1,9 @@
 # FE/BE Disaster Reliefe
+## Contributers:
+Steve B
+Dustin M
+Nicholas D
+Lucas M
 
 ___
 ## Starting the Project
@@ -20,6 +25,7 @@ Overall, a disaster relief page plays a critical role in coordinating and mobili
 
 BE GitHub URL: https://github.com/SteveCButler/disasterrelief-be
 FE GitHub URL: https://github.com/ndswimming92/disaster-relief-e22-e24
+Loom Video URL: https://www.loom.com/share/8d47427ff14643a891ef849281d2592a
 
 ## Site Pages: 
 
